@@ -1,6 +1,7 @@
 package app.interfaces;
 
 import java.util.PriorityQueue;
+import java.util.Set;
 
 public interface PostInterface {
 	public void setId(Integer id);
@@ -21,7 +22,7 @@ public interface PostInterface {
 	public double getPayment();
 	
 	public void addInterested(UserInterface interested);
-	public PriorityQueue<UserInterface> getInterested();
+	public Set<UserInterface> getInterested();
 	
 	public void setServiceGiven(boolean serviceGiven);
 	public boolean getServiceGiven();
