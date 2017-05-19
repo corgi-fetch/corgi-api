@@ -3,14 +3,15 @@ package app.interfaces;
 import java.util.PriorityQueue;
 
 public interface PostInterface {
-	public long getId();
+	public void setId(Integer id);
+	public Integer getId();
 
 	public int getDate();
 	
 	public void setOwner(UserInterface owner);
 	public UserInterface getOwner();
 
-	public void setTitle(String title);
+	public void setTitle(TitleInterface title);
 	public String getTitle();
 
 	public void setDescription(String description);

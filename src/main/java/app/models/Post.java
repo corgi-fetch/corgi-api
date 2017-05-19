@@ -2,12 +2,19 @@ package app.models;
 
 import app.interfaces.*;
 import java.util.PriorityQueue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Post implements PostInterface {
-	private final long id = 0;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
 	private final int date = 1;
 	private UserInterface owner;
-	private String title;
+	private TitleInterface title;
 	private String description;
 	private double payment;
 	private PriorityQueue<UserInterface> interestedQueue = new PriorityQueue<>();
@@ -17,8 +24,12 @@ public class Post implements PostInterface {
 	public Post() {
 
 	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -34,12 +45,12 @@ public class Post implements PostInterface {
 		return this.owner;
 	}
 
-	public void setTitle(String _title) {
+	public void setTitle(TitleInterface _title) {
 		this.title = _title;
 	}
 
 	public String getTitle() {
-		return this.title;
+		return this.title.getTitle();
 	}
 
 	public void setDescription(String _description) {
