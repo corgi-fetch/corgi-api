@@ -1,11 +1,14 @@
 package app.models;
 
 import app.interfaces.*;
-import java.util.PriorityQueue;
+//import java.util.PriorityQueue;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Post implements PostInterface {
@@ -13,11 +16,14 @@ public class Post implements PostInterface {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private final int date = 1;
+	@ManyToOne(targetEntity = User.class)
 	private UserInterface owner;
+	@ManyToOne(targetEntity = Title.class)
 	private TitleInterface title;
 	private String description;
 	private double payment;
-	private PriorityQueue<UserInterface> interestedQueue = new PriorityQueue<>();
+	@OneToMany(targetEntity = User.class)
+	private Set<UserInterface> interestedQueue;
 	private boolean serviceGiven;
 	private boolean serviceReceived;
 
@@ -73,7 +79,7 @@ public class Post implements PostInterface {
 		this.interestedQueue.add(_interested);
 	}
 
-	public PriorityQueue<UserInterface> getInterested() {
+	public Set<UserInterface> getInterested() {
 		return this.interestedQueue;
 	} 
 
