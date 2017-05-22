@@ -11,11 +11,20 @@ public class Title implements TitleInterface {
     @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+    private String title;
 
-    public Title(int _id) {
-        id = _id;
+
+    public Title() {
+        
     }
+    
     public String getTitle() {
-        return "";
+        return title;
     }
+
+    public void setTitle(String _title) {
+        this.title = _title;
+    }
+
+    
 }
