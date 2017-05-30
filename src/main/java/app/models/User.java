@@ -1,11 +1,6 @@
 package app.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 import java.util.Set;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -13,21 +8,20 @@ import java.util.LinkedList;
 import app.interfaces.*;
 
 
-@Entity
-public class User implements UserInterface{
 
-    @Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+public class User /*implements UserInterface*/{
+
+    
 	private Integer id;
     private int rating;
     private String name;
     private String email;
-    @OneToMany(targetEntity = Post.class)
-    private Set<PostInterface> postHistory;
-    @ManyToOne(targetEntity = Post.class)
-    private PostInterface currentPost;
-    @OneToMany(targetEntity = Post.class)
-    private Set<PostInterface> currentJobs;
+    
+    private Set<Post> postHistory;
+    
+    private Post currentPost;
+    
+    private Set<Post> currentJobs;
     private String creditCardNumber;
     private String bankAccount;
 
@@ -59,27 +53,27 @@ public class User implements UserInterface{
         return email;
     }
 
-    public void setPostHistory(Set<PostInterface> _postHistory) {
+    public void setPostHistory(Set<Post> _postHistory) {
         postHistory = _postHistory;
     }
 
-    public Set<PostInterface> getPostHistory() {
+    public Set<Post> getPostHistory() {
         return postHistory;
     }
 
-    public void setCurrentPost(PostInterface _currentPost) {
+    public void setCurrentPost(Post _currentPost) {
         currentPost = _currentPost;
     }
 
-    public PostInterface getCurrentPost() {
+    public Post getCurrentPost() {
         return currentPost;
     }
 
-    public void setCurrentJobs(Set<PostInterface> _currentJobs) {
+    public void setCurrentJobs(Set<Post> _currentJobs) {
         currentJobs = _currentJobs;
     }
 
-    public Set<PostInterface> getCurrentJobs() {
+    public Set<Post> getCurrentJobs() {
         return currentJobs;
     }
     
