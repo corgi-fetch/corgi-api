@@ -1,36 +1,24 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
-    }
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.fetch.app'
+version = '1'
+
+description = """"""
+
+sourceCompatibility = 1.5
+targetCompatibility = 1.5
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
+
 
 repositories {
-    mavenCentral()
+        
+     maven { url "http://repo.maven.apache.org/maven2" }
 }
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 dependencies {
-    compile("joda-time:joda-time:2.2")
-    testCompile("junit:junit:4.12")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-
-    // Use MySQL Connector-J
-    compile("mysql:mysql-connector-java")
-
-    testCompile("org.springframework.boot:spring-boot-starter-test")
-}
-
-jar {
-    baseName = 'corgi-api'
-    version =  '0.1.0'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.1.9.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-mongodb', version:'1.5.4.RELEASE'
 }

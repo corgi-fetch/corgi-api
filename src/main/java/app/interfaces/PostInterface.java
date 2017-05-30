@@ -4,8 +4,6 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public interface PostInterface {
-	public void setId(Integer id);
-	public Integer getId();
 
 	public int getDate();
 	

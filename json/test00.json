@@ -1,0 +1,27 @@
+{
+    "owner" : 
+        {
+            "id" : 1,
+            "rating" : 5,
+            "name" : "Daniel",
+            "email" : "daniel.dian.zhang@gmail.com",
+            "postHistory" : [],
+            "currentPost" : 
+                {
+
+                },
+            "currentJobs" : [],
+            "creditCardNumber" : "asdfCardNumber",
+            "bankAccount" : "asdfBankAccount"
+        },
+    "title" : 
+        {
+            "id" : 1,
+            "title" : "this is title"
+        },
+    "description" : "This is a description",
+    "payment" : 50.0,
+    "interestedQueue" : [],
+    "serviceGiven" : false,
+    "serviceReceived" :false
+}

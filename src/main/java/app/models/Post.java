@@ -2,100 +2,118 @@ package app.models;
 
 import app.interfaces.*;
 //import java.util.PriorityQueue;
-import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import java.util.List;
+import org.springframework.data.annotation.Id;
 
-@Entity
-public class Post implements PostInterface {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
-	private final int date = 1;
-	@ManyToOne(targetEntity = User.class)
-	private UserInterface owner;
-	@ManyToOne(targetEntity = Title.class)
-	private TitleInterface title;
+public final class Post /*implements PostInterface */{
+	
+
+	@Id private String id;
+	
+	private int date;
+	private User owner;
+	private Title title;
 	private String description;
 	private double payment;
-	@OneToMany(targetEntity = User.class)
-	private Set<UserInterface> interestedQueue;
+	
+	private List<User> interestedQueue;
 	private boolean serviceGiven;
 	private boolean serviceReceived;
 
-	public Post() {
+	private Post(Builder _builder) {
+		this.date = _builder.date;
+		this.owner = _builder.owner;
+		this.title = _builder.title;
+		this.description = _builder.description;
+		this.payment = _builder.payment;
 
-	}
-	
-	public void setId(Integer id) {
-		this.id = id;
+		this.interestedQueue = _builder.interestedQueue;
+		this.serviceGiven = _builder.serviceGiven;
+		this.serviceReceived = _builder.serviceReceived;
 	}
 
-	public Integer getId() {
-		return id;
+	public static Builder getBuilder(int _date, User _owner, Title _title, String _description, double _payment) {
+		return new Builder(_date, _owner, _title, _description, _payment);
 	}
 
 	public int getDate() {
-		return date;
+		return this.date;
 	}
 
-	public void setOwner(UserInterface _owner) {
-		this.owner = _owner;
-	}
-
-	public UserInterface getOwner() {
+	public User getOwner() {
 		return this.owner;
 	}
 
-	public void setTitle(TitleInterface _title) {
-		this.title = _title;
-	}
-
-	public String getTitle() {
-		return this.title.getTitle();
-	}
-
-	public void setDescription(String _description) {
-		this.description = _description;
+	public Title getTitle() {
+		return this.title;
 	}
 
 	public String getDescription() {
 		return this.description;
 	}
 
-	public void setPayment(double _payment) {
-		this.payment = _payment;
-	}
-
 	public double getPayment() {
 		return this.payment;
 	}
 
-	public void addInterested(UserInterface _interested) {
-		this.interestedQueue.add(_interested);
-	}
-
-	public Set<UserInterface> getInterested() {
+	public List<User> getInterestedQueue() {
 		return this.interestedQueue;
-	} 
-
-	public void setServiceGiven(boolean _serviceGiven) {
-		this.serviceGiven = _serviceGiven;
 	}
 
 	public boolean getServiceGiven() {
 		return this.serviceGiven;
 	}
 
-	public void setServiceReceived(boolean _serviceReceived) {
-		this.serviceReceived = _serviceReceived;
-	}
-
 	public boolean getServiceReceived() {
 		return this.serviceReceived;
 	}
+
+	public void update(Builder _builder) {
+		this.date = _builder.date;
+		this.owner = _builder.owner;
+		this.title = _builder.title;
+		this.description = _builder.description;
+		this.payment = _builder.payment;
+
+		this.interestedQueue = _builder.interestedQueue;
+		this.serviceGiven = _builder.serviceGiven;
+		this.serviceReceived = _builder.serviceReceived;
+	}
+
+	public static class Builder {
+		
+		private int date;
+		private User owner;
+		private Title title;
+		private String description;
+		private double payment;
+		
+		private List<User> interestedQueue;
+		private boolean serviceGiven = false;
+		private boolean serviceReceived = false;
+
+		private Builder() {}
+
+		public Builder(int _date, User _owner, Title _title, String _description, double _payment) {
+			this.date = _date;
+			this.owner = _owner;
+			this.title = _title;
+			this.description = _description;
+			this.payment = _payment;
+		}
+
+		public Builder interestedQueue(List<User> _interestedQueue) 
+			{ this.interestedQueue = _interestedQueue;	return this; }
+		public Builder serviceGiven(boolean _serviceGiven)
+			{ this.serviceGiven = _serviceGiven; return this; }
+		public Builder serviceReceived(boolean _serviceReceived)
+			{ this.serviceReceived = _serviceReceived; return this; }
+
+		public Post build() {
+			return new Post(this);
+		}
+		
+	}
+
+	
 }

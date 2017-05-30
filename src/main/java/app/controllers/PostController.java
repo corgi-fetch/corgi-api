@@ -1,4 +1,4 @@
-package app.controllers;
+/*package app.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,3 +23,4 @@ public class PostController {
     }
 }
 
+*/
